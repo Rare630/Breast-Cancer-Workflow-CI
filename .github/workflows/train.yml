@@ -16,12 +16,13 @@ jobs:
       - name: Set Up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Install Dependencies
         run: |
+          pip install mlflow
           pip install -r requirements.txt
 
-      - name: Run Training Script
+      - name: Run MLflow Project
         run: |
-          python modelling.py
+          mlflow run .
