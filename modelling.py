@@ -1,4 +1,3 @@
-
 import pandas as pd
 import mlflow
 import mlflow.sklearn
@@ -22,20 +21,18 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 mlflow.sklearn.autolog()
 
-with mlflow.start_run():
+model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
 
-    model = RandomForestClassifier(
-        n_estimators=100,
-        random_state=42
-    )
+model.fit(X_train, y_train)
 
-    model.fit(X_train, y_train)
+predictions = model.predict(X_test)
 
-    predictions = model.predict(X_test)
+accuracy = accuracy_score(
+    y_test,
+    predictions
+)
 
-    accuracy = accuracy_score(
-        y_test,
-        predictions
-    )
-
-    print("Accuracy:", accuracy)
+print("Accuracy:", accuracy)
