@@ -20,9 +20,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install mlflow
           pip install -r requirements.txt
 
-      - name: Run MLflow Project
+      - name: Run Training Script
         run: |
-          mlflow run .
+          python modelling.py
